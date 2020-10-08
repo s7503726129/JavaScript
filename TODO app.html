@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>TODO app</title>
+
+    <script>
+        function addItem() {
+            // ul 요소 가져옴
+            let list = document.getElementById('todolist');
+            // input 요소 가져옴.
+            let todo = document.getElementById('item');
+            // 새로운 li 요소를 생성
+            let listitem = document.createElement('li');
+            let ibtn = document.createElement('button');
+            // li 요소에 들어갈 닫기 버튼 생성
+            let xbtn = document.createElement('button');
+
+            listitem.className = 'list-group-item list-group-item-action list-group-item-warning';
+
+            ibtn.className='reinput';
+            ibtn.innerHTML='&amp;';
+            ibtn.onclick=function(e){
+                let pnode = e.target.parentNode;
+                var n;
+                n=prompt("edit item");
+                listitem.innerText=n.value;
+                list.replaceChild(pnode);
+
+            }
+            
+
+            xbtn.className = 'close';
+            xbtn.innerHTML = '&times;';
+            // close 버튼에 이벤트 처리
+            xbtn.onclick = function (e) {
+                // 이벤트가 발생한 li 요소를 구해서 ul 요소에서 제거
+                let pnode = e.target.parentNode;
+                list.removeChild(pnode);
+            }
+            // li 요소 구성
+            listitem.innerText = todo.value;
+            listitem.appendChild(ibtn);
+            listitem.appendChild(xbtn);
+            // ul 요소에 li 요소 추가
+            list.appendChild(listitem);
+
+            // 입력칸 비우기 및 포커스 이동
+            todo.value = '';
+            todo.focus();
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container shadow mx-auto mt-5 p-5 w-70">
+        <div class="container">
+            <h2>My To-Do App</h2>
+        </div>
+        <hr>
+        <div class="input-group">
+            <input id="item" class="form-control" type="text" placeholder="Input new todo">
+            <button id="newBtn" type="button" class="btn btn-info" onclick="addItem()">New Entry</button>
+        </div>
+        <ul class="list-group" id="todolist">
+
+        </ul>
+    </div>
+
+
+
+
+    
+</body>
+
+</html>
